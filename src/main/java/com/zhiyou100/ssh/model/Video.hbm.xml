@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping>
+    
+    	<class name="com.zhiyou100.ssh.model.Video" table="video">
+    		<id name="id">
+    			<generator class="native"></generator>
+    		</id>
+    		<property name="videoTitle" column="video_title"></property>
+    		<property name="videoLength" column="video_length"></property>
+    		<property name="videoImageUrl" column="video_image_url"></property>
+    		<property name="videoUrl" column="video_url"></property>
+    		<property name="videoDescr" column="video_descr"></property>
+    		<property name="insertTime" column="insert_time"></property>
+    		<property name="updateTime" column="update_time"></property>
+    		<property name="videoPlayTimes" column="video_play_times"></property>
+    		<property name="speakerId" column="speaker_id"></property>
+    		<property name="courseId" column="course_id"></property>
+    		
+    	    <many-to-one name="speaker" class="com.zhiyou100.ssh.model.Speaker" column="speaker_id" insert="false" update="false" cascade="all"></many-to-one>
+     		<many-to-one name="course" class="com.zhiyou100.ssh.model.Course" column="course_id" insert="false" update="false" cascade="all"></many-to-one> 
+   		
+    	</class>
+    </hibernate-mapping>

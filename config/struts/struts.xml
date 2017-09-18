@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="spring"></constant>
+	<package name="Admin" namespace="/admin" extends="struts-default">
+		<action name="adminindex" class="adminUserAction"
+			method="adminindex">
+			<result name="success">/WEB-INF/view/admin/admin.jsp</result>
+		</action>
+		<action name="adminUser" class="adminUserAction" method="adminUser">
+			<result name="error">/WEB-INF/view/admin/admin.jsp</result>
+			<result type="redirectAction">
+				<param name="actionName">videoList</param>
+				<param name="namespace">/Video</param>
+			</result>
+		</action>
+		 <action name="logout" class="adminUserAction" method="logoutUser">
+			<result type="redirectAction">
+				<param name="actionName">adminindex</param>
+				<param name="namespace">/admin</param>
+			</result>
+		</action> 
+		
+		
+	</package>
+
+	<package name="Video" namespace="/Video" extends="struts-default">
+		<action name="videoList" class="adminVideoAction" method="videoList">
+			<result name="success">/WEB-INF/view/admin/videoMangement/videoMangementList.jsp
+			</result>
+		</action>
+		<action name="videoadd" class="adminVideoAction" method="videoadd">
+			<!-- /WEB-INF/view/admin/videoMangement/addvideo.jsp -->
+			<result name="success">/WEB-INF/view/admin/videoMangement/addvideo.jsp
+			</result>
+		</action>
+
+		<action name="videobaocun" class="adminVideoAction" method="videobaocun">
+			<result type="redirectAction">
+				<param name="actionName">videoList</param>
+				<param name="namespace">/Video</param>
+			</result>
+		</action>
+
+		<action name="deletevideo" class="adminVideoAction" method="deletevideo">
+			<result type="redirectAction">
+				<param name="actionName">videoList</param>
+				<param name="namespace">/Video</param>
+			</result>
+		</action>
+		<action name="updatevideo" class="adminVideoAction" method="updatevideo">
+			<result name="success">/WEB-INF/view/admin/videoMangement/editVideo.jsp
+			</result>
+		</action>
+		<action name="updatevideobaocun" class="adminVideoAction"
+			method="updatevideobaocun">
+			<result type="redirectAction">
+				<param name="actionName">videoList</param>
+				<param name="namespace">/Video</param>
+			</result>
+		</action>
+		<action name="batchDelete" class="adminVideoAction" method="batchDelete">
+			<result type="redirectAction">
+				<param name="actionName">videoList</param>
+				<param name="namespace">/Video</param>
+			</result>
+		</action>
+		<action name="courseStatistical" class="adminVideoAction" method="courseStatistical">
+			<result name="success">/WEB-INF/view/admin/statistics/statistics.jsp
+			</result>
+		</action>
+	</package>
+
+
+
+
+	<package name="Speaker" namespace="/Speaker" extends="struts-default">
+		<action name="speakerList" class="adminSpeakerAction" method="speakerList">
+			<result name="success">/WEB-INF/view/admin/listOfSpeaker/speakerList.jsp
+			</result>
+		</action>
+		<action name="speakeradd" class="adminSpeakerAction" method="speakeradd">
+			<result name="success">/WEB-INF/view/admin/listOfSpeaker/addSpeaker.jsp
+			</result>
+		</action>
+		<action name="speakeraddbaocun" class="adminSpeakerAction"
+			method="speakeraddbaocun">
+			<result type="redirectAction">
+				<param name="actionName">speakerList</param>
+				<param name="namespace">/Speaker</param>
+			</result>
+		</action>
+		<action name="updateSpeaker" class="adminSpeakerAction" method="updateSpeaker">
+			<result name="success">/WEB-INF/view/admin/listOfSpeaker/editSpeaker.jsp
+			</result>
+		</action>
+		<action name="updateSpeakerbaocun" class="adminSpeakerAction"
+			method="updateSpeakerbaocun">
+			<result type="redirectAction">
+				<param name="actionName">speakerList</param>
+				<param name="namespace">/Speaker</param>
+			</result>
+		</action>
+	</package>
+	<package name="Course" namespace="/Course" extends="struts-default">
+		<action name="courseList" class="adminCourseAction" method="courseList">
+			<result name="success">/WEB-INF/view/admin/courseMangement/courseList.jsp
+			</result>
+		</action>
+		<action name="addcourse" class="adminCourseAction" method="addcourse">
+			<result name="success">/WEB-INF/view/admin/courseMangement/addcourse.jsp
+			</result>
+		</action>
+		<action name="addcoursebaocun" class="adminCourseAction" method="addcoursebaocun">
+			<result type="redirectAction">
+				<param name="actionName">courseList</param>
+				<param name="namespace">/Course</param>
+			</result>
+		</action>
+		<action name="editcourse" class="adminCourseAction" method="editcourse">
+			<result name="success">/WEB-INF/view/admin/courseMangement/editCourse.jsp
+			</result>
+		</action>
+		<action name="editcoursebaocun" class="adminCourseAction" method="editcoursebaocun">
+			<result type="redirectAction">
+				<param name="actionName">courseList</param>
+				<param name="namespace">/Course</param>
+			</result>
+		</action>
+		<action name="deletecourse" class="adminCourseAction" method="deletecourse">
+			<result type="redirectAction">
+				<param name="actionName">courseList</param>
+				<param name="namespace">/Course</param>
+			</result>
+		</action>
+		
+
+
+
+	</package>
+	<package name="Adminajax" namespace="/json" extends="json-default">
+		<action name="deleteSpeaker" class="adminSpeakerAction" method="deleteSpeaker">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+
+
+
+
+
+
+
+
+
+	<package name="FrontUser" namespace="/" extends="struts-default">
+		<action name="" class="frontUserAction">
+			<result name="success">/WEB-INF/view/front/index.jsp</result>
+		</action>
+	</package>
+	<!-- 前台 ajax 方法 -->
+	<package name="Frontajax" namespace="/front" extends="json-default">
+		<action name="indexuser" class="frontUserAction" method="indexjson">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="sendemail" class="frontUserAction" method="sendemailPwd">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="user" class="frontUserAction" method="registjson">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+	</package>
+
+	<package name="FrontUserList" namespace="/front" extends="struts-default">
+		<action name="userlist" class="frontUserAction" method="userlist">
+			<result>/WEB-INF/view/front/user/index.jsp</result>
+		</action>
+		<action name="profile" class="frontUserAction" method="updateprofile">
+			<result>/WEB-INF/view/front/user/profile.jsp</result>
+		</action>
+		<action name="avatar" class="frontUserAction" method="updateavatar">
+			<result>/WEB-INF/view/front/user/avatar.jsp</result>
+		</action>
+		<action name="avatarbaocun" class="frontUserAction" method="updateavatarbaocun">
+			<result type="redirectAction">
+				<param name="actionName">userlist</param>
+				<param name="namespace">/front</param>
+			</result>
+		</action>
+		<action name="logout" class="frontUserAction" method="logoutUser">
+			<result type="redirectAction">
+				<param name="actionName">""</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="profilebaocun" class="frontUserAction" method="updateprofilebaocun">
+			<result type="redirectAction">
+				<param name="actionName">userlist</param>
+				<param name="namespace">/front</param>
+			</result>
+		</action>
+		<action name="password" class="frontUserAction" method="updatepassword">
+			<result>/WEB-INF/view/front/user/password.jsp</result>
+		</action>
+		<action name="passwordbaocun" class="frontUserAction" method="updatepasswordbaocun">
+			<result type="redirectAction">
+				<param name="actionName">userlist</param>
+				<param name="namespace">/front</param>
+			</result>
+		</action>
+		<action name="forget_pwd" class="frontUserAction" method="userforget_pwd">
+			<result>/WEB-INF/view/front/user/forget_pwd.jsp</result>
+		</action>
+		<action name="reset_pwd" class="frontUserAction" method="userreset_pwd">
+			<result>/WEB-INF/view/front/user/reset_pwd.jsp</result>
+		</action>
+		<action name="reset_pwdbaocun" class="frontUserAction" method="userreset_pwdbaocun">
+			<result type="redirectAction">
+				<param name="actionName">""</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<!-- course 和video 视频的操作 -->
+
+        <action name="courseindex" class="frontUserAction" method="courseindex">
+        <result>/WEB-INF/view/front/course/index.jsp</result>
+        </action>
+        <action name="videoindex" class="frontUserAction" method="videoindex">
+        <result>/WEB-INF/view/front/video/index.jsp</result>
+        </action>
+        <action name="videoData" class="frontUserAction" method="videoData">
+        <result>/WEB-INF/view/front/video/content.jsp</result>
+        </action>
+
+
+
+
+	</package>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- <package name="Haha" namespace="/user" extends="struts-default"> <action 
+		name="user_*" class="userAction" method="{1}"> <result name="success">/hehe.jsp</result> 
+		</action> </package> <package name="json" namespace="/json" extends="json-default"> 
+		<action name="ajax" class="com.zhiyou100.sh.web.action.AjaxAction"> <result 
+		type="json"> <param name="root">pwd</param> </result> </action> </package> 
+		<package name="file" namespace="/file" extends="struts-default"> <action 
+		name="upload" class="com.zhiyou100.sh.web.action.FileUploadAction" method="saveFile"> 
+		<result>/hehe.jsp</result> </action> </package> -->
+
+
+
+
+
+
+
+
+
+</struts>
+	
+	
+	
+	
+	

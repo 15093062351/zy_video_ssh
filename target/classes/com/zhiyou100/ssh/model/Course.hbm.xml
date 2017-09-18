@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.zhiyou100.ssh.model.Course" table="course">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="courseName" column="course_name"></property>
+		<property name="courseDescr" column="course_descr"></property>
+		<property name="insertTime" column="insert_time"></property>
+		<property name="updateTime" column="update_time"></property>
+		<property name="subjectId" column="subject_id"></property>
+		
+		<many-to-one name="subject" class="com.zhiyou100.ssh.model.Subject" column="subject_id" insert="false" update="false" cascade="save-update"></many-to-one>
+		<set name="videoset">
+    		<key column="course_id"></key>
+    		<one-to-many class="com.zhiyou100.ssh.model.Video"/>
+        </set> 
+	</class>
+</hibernate-mapping>
